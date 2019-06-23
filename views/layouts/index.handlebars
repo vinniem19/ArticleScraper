@@ -1,0 +1,20 @@
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 class="display-4">Read the latest from "The Verge"</h1>
+    <p class="lead">Click "scrape" to get the latest articles.</p>
+  </div>
+</div>
+
+<div class="row">
+<div class="col-sm-2 text-left"></div>
+<div class="col-sm-8">
+{{#each Article}}
+<div class="card" style="width: 18rem;">
+  <div class="card-body">
+    <h5 class="card-title">{{this.title}}</h5>
+    <a href="/readArticle/{{this._id}}" class="card-link" id="btnSignUp">Read Article</a>
+  </div>
+</div>
+</div>
+
+</div>

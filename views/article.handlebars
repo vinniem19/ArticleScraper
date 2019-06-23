@@ -1,0 +1,47 @@
+<div class="row">
+<div class="card" style="width: 18rem;">
+  <div class="card-body">
+    <h5 class="card-title">Card title</h5>
+    <div class="card-body">{{body}}</div>
+  </div>
+</div>
+</div>
+
+<div class="row">
+    <div class="col-sm-2"></div>
+    <form action="/comment/{{article._id}}" method="POST" class="card col-sm-8">
+    <h5>Comment on this Article</h5>
+    <div class="row">
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" class="form-control" id="name" placeholder="Name">
+        </div>
+
+        <div class="form-group">
+            <label for="comment">Comment</label>
+            <input type="text" class="form-control" id="comment" placeholder="Please comment here . . .">
+        </div>
+    </div>
+
+    <div class="row">
+<center><button type="submit" class="btn add-comment-button btn-primary " value="submit"></button></center>
+    </div>
+    </form> 
+</div>>
+
+<div class="row">
+    <div class="col-sm-2"></div>
+    <div class="col-sm-8">
+        <h5>Comments:</h5>
+        {{#if article.comment}}
+        {{#each article.comment}}
+        <div class="card">
+            <p id="nameComment">{{name}}</p>
+            <p>{{body}}</p>
+        </div>
+        {{/each}}
+        {{else}}
+        <p>We don't have any comments yet.</p>
+        {{/if}}
+    </div>
+</div>
