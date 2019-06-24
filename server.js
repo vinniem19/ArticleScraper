@@ -1,27 +1,26 @@
-var bodyParser = require("body-parser");
 var mongoose = require("mongoose");
 var express = require("express");
 var app = express();
-app.use(
-    bodyParser.urlencoded({
-        extended: false
-    })
-);
+var routes = require("./controller/controller");
 
-app.use(express.static("public"));
+
 
 var exphbs = require("express-handlebars");
-app.engine("handlebars", exphbs({defaultLayout: "main"}));
+app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
-mongoose.connect("mongoosedb://localhost/ArticleScraper");
-var db = mongoose.connection;
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 
-if (err) throw (err);
+app.use(express.static("public"));
+app.use(routes);
 
+// mongoose.connect("mongoosedb://localhost/ArticleScraper");
+var db = process.env.MONGODB_URI || "mongodb://localhost/ArticleScraper";
+mongoose.connect(db, { useNewUrlParser: true });
 
 var port = process.env.PORT || 3000;
-app.listen(port, function() {
+app.listen(port, function () {
     console.log("Listening on port: " + port);
-    
+
 });
