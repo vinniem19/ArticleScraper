@@ -83,7 +83,7 @@ router.get("/articles-json", function(req, res) {
 
 // clear out the db if wanted
     router.get("/clearAll", function(req, res) {
-        Article.remove({}, function(err, doc) {
+        Article.deleteMany({}, function(err, doc) {
             if(err) {
                 console.log(err);
             } else {
@@ -128,7 +128,10 @@ router.get("/articles-json", function(req, res) {
 
     // route for user to create comments
     router.post("/comment/:id", function(req,res) {
+        console.log(req.body.name);
         var user = req.body.name;
+        console.log(req.body.comment);
+        
         var content = req.body.comment;
         var articleId = req.params.id;
 
@@ -158,6 +161,7 @@ router.get("/articles-json", function(req, res) {
             }
         });
     });
+   
 
 
 module.exports = router;
